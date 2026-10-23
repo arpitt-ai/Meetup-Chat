@@ -1,0 +1,19 @@
+# One-click deploy on Render: https://render.com/deploy?repo=<your repo url>
+# Note: the free plan has an ephemeral disk, so accounts/messages reset on each redeploy or restart.
+# For persistent data, use a paid plan and uncomment the disk block below.
+services:
+  - type: web
+    name: meetup
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+    # disk:
+    #   name: meetup-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # (and set env MEETUP_DATA=/var/data)
